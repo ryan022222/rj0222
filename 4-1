@@ -1,0 +1,58 @@
+#include<iostream>
+
+using namespace std;
+
+void getnum(int& input1, int& input2);//儲存輸入數字
+
+void conv(int& num1, char &timeofday);//轉換小時制
+
+void output(int output1, int output2,char timeofday);//輸出
+ 
+void ans(char &answer);
+int main() {
+	char answer = 'y';
+	
+	do {
+		int hour=0, minute=0;
+		char timeofday = 'P';
+		
+
+		getnum(hour, minute);
+		conv(hour,timeofday);
+		output(hour, minute,timeofday);
+		ans(answer);
+
+	} while (answer == 'y' || answer == 'Y');//輸入y或Y時繼續使用
+	
+
+	
+
+	return 0;
+}
+void getnum(int &input1, int &input2) {
+	cout << "Enter the hour and minute" << "\n";//輸入時間
+	cin >> input1 >> input2;
+}
+void conv(int& num1, char &timeofday ) {//轉換小時制
+	if (num1 > 12 && num1 < 25 ) {
+		num1 = num1 - 12;
+		timeofday = 'P';//時間為下午
+	}
+	else if(num1>0 && num1<13)
+
+	{
+		timeofday = 'A';//時間為上午
+	}
+	
+}
+void output(int output1, int output2, char timeofday) {
+	cout << "The conversions of origin input hours and minutes:" << "\n"//原始時間的轉換結果為:
+		<< output1 << ":" << output2 << timeofday << ".M." << "\n";
+}
+void ans(char& ans) {//當使用者輸入y或Y時繼續使用
+	cout << "Do you want to input again?" << "\n";
+	cin >> ans;
+
+
+
+}
