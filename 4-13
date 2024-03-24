@@ -1,0 +1,36 @@
+#include<iostream>
+
+using namespace std;
+
+double convertToMPH(int minute ,int second);//轉換x分y秒/每英里為 英里/每小時
+double convertToMPH(double kph);//轉換公里/每小時為 英里/每小時
+
+int main() {
+	int minute = 0;
+	int second = 0;
+	double  kph;
+
+	cout << "Enter the minute and second"<<"\n";//輸入分鐘和秒數
+	cin >> minute >> second;
+	cout << "Miles per hour:" << convertToMPH(minute, second) << "\n";//英里每小時:
+
+
+	cout << "Enter the speed in the km per hour" << "\n";//輸入跑速以公里/每小時的形式
+	cin >> kph;
+	cout << "Miles per hour:" << convertToMPH(kph) << "\n";//英里每小時
+	
+
+	return 0;
+
+}
+double convertToMPH(int minute, int second) {
+	
+	return 60 / (minute + second / 60);//回傳計算結果
+
+}
+double convertToMPH(double kph){
+
+	double mph;
+	mph = kph * 1.6;//英里=1.6公里
+	return mph;//回傳計算結果
+}
