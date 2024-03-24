@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+const int NUM_REVIEWERS = 4;
+const int NUM_MOVIES = 6;
+
+// Function to calculate Cartesian distance between two reviewers' ratings
+double cartesianDistance(int userRatings[], int reviewerRatings[]) {
+    double distance = 0.0;
+    for (int i = 0; i < NUM_MOVIES; ++i) {
+        distance += pow(userRatings[i] - reviewerRatings[i], 2);
+    }
+    return sqrt(distance);
+}
+
+int main() {
+    int reviews[NUM_REVIEWERS][NUM_MOVIES] = {//數據輸入
+        {3, 1, 5, 2, 1, 5},
+        {4, 2, 1, 4, 2, 4},
+        {3, 1, 2, 4, 4, 1},
+        {5, 1, 4, 2, 4, 2}
+    };
+
+    int userRatings[NUM_MOVIES];//輸入評價
+    cout << "Enter your ratings for three movies (rated from 1 to 5):" <<"\n";
+    for (int i = 0; i < 3; ++i) {
+        int movie, rating;
+        cout << "Movie: ";
+        cin >> movie;
+        cout << "Rating: ";
+        cin >> rating;
+        userRatings[movie - 100] = rating;
+    }
+
+    int closestReviewer = -1;
+    double minDistance = -1;
+
+    for (int i = 0; i < NUM_REVIEWERS; ++i) {//找出距離最近者
+        double distance = cartesianDistance(userRatings, reviews[i]);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestReviewer = i;
+        }
+    }
+
+    cout << "Closest reviewer: " << closestReviewer << "\n";
+    cout << "Predicted ratings for other movies:" << "\n";
+    for (int i = 0; i < NUM_MOVIES; ++i) {
+        if (userRatings[i] == 0) {
+            cout << "Movie " << i + 100 << ": " << reviews[closestReviewer][i] << "\n";
+        }
+    }
+
+    return 0;
+}
