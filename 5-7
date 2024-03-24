@@ -1,0 +1,36 @@
+#include<iostream>
+
+
+using namespace std;
+
+int main() {
+	
+    int grade[6]={0,0,0,0,0,0};
+    int grades;
+    bool continueInput = true;
+	
+    while (continueInput) {
+        cout << "請輸入學生的成績（0到5之間，-1結束輸入）：";
+        cin >> grades;
+
+        // 檢查是否要結束輸入
+        if (grades == -1) {
+            continueInput = false;
+        }
+        else if (grades>= 0 && grades <= 5) {
+            // 將該分數的學生人數加一
+            grade[grades]++;
+        }
+        else {
+            cout << "輸入無效，請輸入0到5之間的分數。" << "\n";
+        }
+    }
+		
+	
+	for (int i = 0; i <6 ; ++i) {
+		cout << grade[i] << "grade(s) of" << i << "\n";
+
+	}
+    return 0;
+}
+
