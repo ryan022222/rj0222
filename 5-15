@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    // 隨機數種子初始化
+    srand(time(nullptr));
+
+    // 存儲實際 PIN 碼
+    int actualPIN = 12345;
+
+    // 將 0 到 9 的每個數字分別對應到 1、2 或 3 的隨機數字
+    int randomDigits[10];
+    for (int i = 0; i < 10; ++i) {
+        randomDigits[i] = rand() % 3 + 1;
+    }
+
+    // 輸出提示
+    cout << "PIN: ";
+    for (int i = 0; i < 10; ++i) {
+        cout << i << " ";
+    }
+    cout << endl;
+
+    cout << "NUM: ";
+    for (int i = 0; i < 10; ++i) {
+        cout << randomDigits[i] << " ";
+    }
+
+    cout <<"actual pin:"<< actualPIN<<endl;
+
+    // 請求用戶輸入對應數字
+    int response[5];
+    cout << "請依次輸入對應數字: ";
+    for(int i = 0; i < 5; ++i)
+        cin >> response[i];
+
+    // 驗證對應數字是否正確
+    
+    for (int i = 0; i < 5; ++i) {
+
+
+        if (response[i] == randomDigits[i]) {
+            cout << "正確" << endl;
+        }
+        else {
+            cout << "不正確" << endl;
+        }
+
+        return 0;
+    }
+}
